@@ -9,6 +9,7 @@ const {
   JWT_ACCESS_TOKEN_SECRET,
   JWT_ACCESS_TOKEN_EXPIRES_IN,
 } = require('../constants/security.constant.js');
+const cookieParser = require('cookie-parser');
 
 const { Users } = db;
 //const { Users } = require('../models');
@@ -126,6 +127,8 @@ authRouter.post('/signin', async (req, res) => {
       expiresIn: JWT_ACCESS_TOKEN_EXPIRES_IN,
     });
 
+    res.cookie('accessToken', accessToken, { httpOnly: true });
+
     return res.status(200).json({
       success: true,
       message: '로그인에 성공했습니다.',
@@ -143,7 +146,9 @@ authRouter.post('/signin', async (req, res) => {
 // 로그아웃
 authRouter.post('/signout', (req, res) => {
   try {
-    localStorage.removeItem('accessToken');
+    console.log(req.cookies);
+
+    res.clearCookie('accessToken');
 
     return res.status(200).json({
       success: true,

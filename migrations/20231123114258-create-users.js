@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       nickname: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       name: {
@@ -29,15 +29,15 @@ module.exports = {
         type: Sequelize.STRING,
       },
       gender: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       age: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       Oneliner: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       createdAt: {
