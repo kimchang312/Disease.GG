@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       nickname: {
-        allowNull: true,
+        allowNull: false,
         type: DataTypes.STRING,
       },
       name: {
@@ -36,15 +36,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       gender: {
-        allowNull: true,
+        allowNull: false,
         type: DataTypes.STRING,
       },
       age: {
-        allowNull: true,
+        allowNull: false,
         type: DataTypes.INTEGER,
       },
       Oneliner: {
-        allowNull: true,
+        allowNull: false,
         type: DataTypes.STRING,
       },
       createdAt: {
