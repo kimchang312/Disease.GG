@@ -1,13 +1,26 @@
-const express = require('express');
+const { Router } = require('express');
+//const express = require('express');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const db = require('../models/index.js');
 
-const authRouter = express.Router();
+const {
+  PASSWORD_HASH_SALT_ROUNDS,
+  JWT_ACCESS_TOKEN_SECRET,
+  JWT_ACCESS_TOKEN_EXPIRES_IN,
+} = require('../constants/security.constant.js');
+
+const { Users } = db;
+//const { Users } = require('../models');
+
+const authRouter = Router();
 
 // 회원가입
 authRouter.post('/signup', async (req, res) => {
   try {
-    const { email, password, passwordconfirm, name } = req.body;
+    const { account, password, passwordconfirm, name } = req.body;
 
-    if (!email) {
+    if (!account) {
       return res.status(400).json({
         success: false,
         message: '이메일 입력이 필요합니다.',
@@ -49,16 +62,7 @@ authRouter.post('/signup', async (req, res) => {
       });
     }
 
-    let emailValidationRegex = new RegExp('[a-z0-9._]+@[a-z]+.[a-z]{2,3}');
-    const isValidEmail = emailValidationRegex.test(email);
-    if (!isValidEmail) {
-      return res.status(400).json({
-        success: false,
-        message: '올바른 이메일 형식이 아닙니다.',
-      });
-    }
-
-    const existUser = await Users.findOne({ where: { email } });
+    const existUser = await Users.findOne({ where: { account } });
     if (existUser) {
       return res.status(400).json({
         success: false,
@@ -69,7 +73,7 @@ authRouter.post('/signup', async (req, res) => {
     const hashedPassword = bcrypt.hashSync(password, PASSWORD_HASH_SALT_ROUNDS);
 
     const newUser = (
-      await Users.create({ email, password: hashedPassword, name })
+      await Users.create({ account, password: hashedPassword, name })
     ).toJSON();
     delete newUser.password;
     return res.status(201).json({
@@ -90,9 +94,9 @@ authRouter.post('/signup', async (req, res) => {
 
 authRouter.post('/signin', async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { account, password } = req.body;
 
-    if (!email) {
+    if (!account) {
       return res.status(400).json({
         success: false,
         message: '이메일 입력이 필요합니다.',
@@ -106,7 +110,7 @@ authRouter.post('/signin', async (req, res) => {
       });
     }
 
-    const user = (await Users.findOne({ where: { email } }))?.toJSON();
+    const user = (await Users.findOne({ where: { account } }))?.toJSON();
     const hashedPassword = user?.password;
     const isPasswordMatched = bcrypt.compareSync(password, hashedPassword);
 
@@ -126,6 +130,24 @@ authRouter.post('/signin', async (req, res) => {
       success: true,
       message: '로그인에 성공했습니다.',
       data: { accessToken },
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: '예상치 못한 에러가 발생했습니다. 관리자에게 문의하세요.',
+    });
+  }
+});
+
+// 로그아웃
+authRouter.post('/signout', (req, res) => {
+  try {
+    localStorage.removeItem('accessToken');
+
+    return res.status(200).json({
+      success: true,
+      message: '로그아웃 되었습니다.',
     });
   } catch (error) {
     console.error(error);
