@@ -3,7 +3,7 @@ async function getInfomationFromServer() {
     try {
         const response = await fetch(`http://localhost:3000/api/users/me`, {
             headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcwMDg0Mzc1NiwiZXhwIjoxNzAwODg2OTU2fQ.a3396EPzL2rzffd3Wu7U9Wn9qJH51muMD3QppEGpMbQ"
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTcwMDg5MjQ5NSwiZXhwIjoxNzAwOTM1Njk1fQ.-2eIjRjTKtBO8GN6XvlboaEWPXHlMv4wo8LBdcUDpzw"
                 // Authorization: `Bearer ${localStorage.getItem("token")}`
             }
         });
@@ -48,7 +48,7 @@ async function putInfomation() {
         const response = await fetch(`http://localhost:3000/api/users/me`, {
             method: "put",
             headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcwMDg0Mzc1NiwiZXhwIjoxNzAwODg2OTU2fQ.a3396EPzL2rzffd3Wu7U9Wn9qJH51muMD3QppEGpMbQ",
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTcwMDg5MjQ5NSwiZXhwIjoxNzAwOTM1Njk1fQ.-2eIjRjTKtBO8GN6XvlboaEWPXHlMv4wo8LBdcUDpzw",
                 // Authorization: `Bearer ${localStorage.getItem("token")}`
                 
                 // 이 녀석을 적어줘야 되는구나.. 그래야 내가 제이슨 형태로 데이터를 보낸다고 알려주는 거구나..6시20분까지 뭐한거니..
