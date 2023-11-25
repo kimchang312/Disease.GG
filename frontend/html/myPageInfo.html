@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myInformation</title>
+<style>
+    .topTable {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        font-size: 50px;
+        color: rgba(0, 0, 0, 0.8);
+    }
+
+    .topTableText {
+        margin-left: 300px;
+        font-size: 70px;
+    }
+
+    .topBtn {
+        font-size: 40px;
+        float: right;
+        margin: 90px 50px 0 0;
+    }
+
+    .topBox {
+        width: 700px;
+        height: 450px;
+        margin: 0px auto 0px auto;
+        padding: 20px;
+        box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+    }
+
+    .form-floating {
+        margin-top: 40px;
+    }
+
+    .infoList {
+        margin-top: 50px;
+        width: 650px;
+        height: 50px;
+        font-size: 40px;
+    }
+
+    .info {
+        margin-top: 50px;
+    }
+
+    
+    .popup {
+        display: none;
+        margin-top: -723px;
+    }
+
+    .popupTable {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        font-size: 50px;
+        color: rgba(0, 0, 0, 0.8);
+    }
+
+    .popupTableText {
+        margin-left: 300px;
+        font-size: 70px;
+    }
+
+    .input {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .popupBox {
+        width: 700px;
+        height: 450px;
+        margin: 0px auto 0px auto;
+        padding: 20px;
+        box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+    }
+
+    .inputInfo {
+        font-size: 50px;
+    }
+
+    .putBtn {
+
+        margin: 20px 0 0 520px;
+        font-size: 20px;
+    }
+</style>
+
+</head>
+<body>
+    <button class="topBtn" type="button">정보수정하기</button>
+    <div class = "top">
+        <div class="topTable">
+            <p class="topTableText">내 정보 조회</p>
+        </div>
+        <div class="topBox" id="postingBox">
+            <div class="form-floating mb-3">
+                <ul class="infoList">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class = "popup">
+        <div class="popupTable">
+            <p class="popupTableText">내 정보 수정</p>
+        </div>
+        <div class= "popupBox">
+            <div class="input" id="inputbox">
+                <div class="form-floating mb-3">
+                    <input class="inputInfo" id="nickname" placeholder="롤닉네임" />
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="inputInfo" id="oneLiner" placeholder="한줄소개" />
+                </div>
+                <div class="form-floating mb-3">
+                    <input type = "password" class="inputInfo" id="password" placeholder="비밀번호" />
+                </div>
+                <div class="form-floating mb-3">
+                    <input type = "password" class="inputInfo" id="passwordconfirm" placeholder="비밀번호 확인" />
+                </div>
+                <button class="putBtn" type="button">정보수정</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="../js/myPageInfo.js"></script>
+</html>
