@@ -6,7 +6,7 @@ const Sequelize = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.cjs')[env];
+const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 
 let sequelize;
@@ -26,7 +26,7 @@ fs.readdirSync(__dirname)
     return (
       file.indexOf('.') !== 0 &&
       file !== basename &&
-      file.slice(-4) === '.cjs' &&
+      file.slice(-3) === '.js' &&
       file.indexOf('.test.js') === -1
     );
   })
