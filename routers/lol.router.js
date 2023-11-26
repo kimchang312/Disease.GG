@@ -1,8 +1,8 @@
-const Router = require('express');
+const { Router } = require('express');
 const lolhelper = require('../helper/lolhelper.js');
 const lolRouter = Router();
 
-lolRouter.get('/search', async (req, res) => {
+lolRouter.get('/', async (req, res) => {
   try {
     const { userid } = req.body;
 
@@ -12,6 +12,8 @@ lolRouter.get('/search', async (req, res) => {
         message: '유저 아이디 입력이 필요합니다.',
       });
     }
+    final = await lolhelper.getEncryptedSummonerId(userid);
+    res.status(200).json({ final });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
@@ -20,3 +22,5 @@ lolRouter.get('/search', async (req, res) => {
     });
   }
 });
+
+module.exports = { lolRouter };
