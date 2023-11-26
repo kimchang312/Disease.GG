@@ -1,6 +1,5 @@
 const Router = require('express');
-const lolhelper = require(.../helper/lolhelper);
-
+const lolhelper = require('../helper/lolhelper.js');
 const lolRouter = Router();
 
 lolRouter.get('/search', async (req, res) => {
