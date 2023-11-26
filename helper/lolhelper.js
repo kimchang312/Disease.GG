@@ -19,7 +19,7 @@ function getEncryptedSummonerId(lol_nickname) {
     .then((data) => {
       encryptedSummonerId = data.id;
       puuid = data.puuid;
-      //getRankInformation(encryptedSummonerId);
+      getRankInformation(encryptedSummonerId);
       getRecentMatch(puuid);
     })
     .catch((error) => {
@@ -77,7 +77,7 @@ function getRecentMatch(puuid) {
   const api =
     'https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/' +
     puuid +
-    '/ids?start=0&count=2&api_key=' +
+    '/ids?start=0&count=5&api_key=' +
     process.env.RIOT_API;
 
   fetch(api)
@@ -114,7 +114,7 @@ function getMatchDetailInfo(matchId, puuid) {
         minute: 'numeric',
         second: 'numeric',
       }); //timestamp 가공
-      console.log(formattedDate);
+      //console.log(formattedDate);
       const durationMin = Math.floor(data.info.gameDuration / 60);
       const durationSec = data.info.gameDuration % 60; // 게임 시간 가공
       let playerList = [];
@@ -151,11 +151,11 @@ function getMatchDetailInfo(matchId, puuid) {
         myAssist: myAssist,
       };
       gameInformation.push(oneGameInfo);
-      console.log(gameInformation);
+      //console.log(gameInformation);
     })
     .catch((error) => {
       console.log(error);
     });
 }
 
-getEncryptedSummonerId('아오 플쌤');
+//getEncryptedSummonerId('아오 플쌤');
