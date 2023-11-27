@@ -143,12 +143,12 @@ function getMatchDetailInfo(matchId, puuid) {
         gameCreation: formattedDate,
         gameDuration: String(durationMin) + '분 ' + String(durationSec) + '초',
         //winTeams: winTeam,
-        playerList: playerList,
-        myWin: myWin,
-        myChampion: myChampion,
-        myKill: myKill,
-        myDeath: myDeath,
-        myAssist: myAssist,
+        playerList,
+        myWin,
+        myChampion,
+        myKill,
+        myDeath,
+        myAssist,
       };
       gameInformation.push(oneGameInfo);
       console.log(gameInformation);

@@ -5,7 +5,7 @@ POST {{host}}/signup
 Content-Type: application/json
 
 {
-   "account": "example111@example.com",
+   "account": "example112@example.com",
    "password": "eXampLeP@ss",
    "passwordconfirm": "eXampLeP@ss",
    "name": "관리자"
@@ -16,7 +16,7 @@ POST {{host}}/signin
 Content-Type: application/json
 
 {
-   "account": "example111@example.com",
+   "account": "example112@example.com",
    "password": "eXampLeP@ss"
 }
 
@@ -36,4 +36,4 @@ Content-Type: application/json
    "name": "관리자",
    "gender": "남자",
    "age": 27,
-   "Oneliner": "인생은페이커처럼",
+   "Oneliner": "인생은페이커처럼"
