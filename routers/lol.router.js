@@ -2,9 +2,9 @@ const { Router } = require('express');
 const lolhelper = require('../helper/lolhelper.js');
 const lolRouter = Router();
 
-lolRouter.get('/', async (req, res) => {
+lolRouter.get('/:userid', async (req, res) => {
   try {
-    const { userid } = req.body;
+    const { userid } = req.params;
 
     if (!userid) {
       return res.status(400).json({
