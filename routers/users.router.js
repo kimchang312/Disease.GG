@@ -1,17 +1,19 @@
 const { Router } = require('express');
 const { needSignin } = require('../middlewares/need-signin.middleware.js');
-const { PASSWORD_HASH_SALT_ROUNDS } = require('../constants/security.constant.js');
-const { Users } = require("../models/");
+const {
+  PASSWORD_HASH_SALT_ROUNDS,
+} = require('../constants/security.constant.js');
+const { Users } = require('../models/');
 const userRouter = Router();
-const bcrypt = require("bcrypt");
-
+const bcrypt = require('bcrypt');
 
 // 마이페이지 정보 조회하는 API
-userRouter.get("/me", needSignin, async (req, res)=>{
+userRouter.get('/me', needSignin, async (req, res) => {
   try {
     const name = res.locals.user.name;
     const id = res.locals.user.id;
     const userInformation = await Users.findOne({
+
       where: { id }
     })
     const { nickname, oneLiner } = userInformation;
@@ -33,10 +35,11 @@ userRouter.get("/me", needSignin, async (req, res)=>{
 
 
 // 내정보 수정하는 API
-userRouter.put("/me", needSignin, async (req, res)=>{
+userRouter.put('/me', needSignin, async (req, res) => {
   try {
     const { nickname, oneLiner, password, passwordconfirm } = req.body;
     const id = res.locals.user.id;
+
     const userPassword = res.locals.user.password;
     const hashPassword = bcrypt.hashSync(password, PASSWORD_HASH_SALT_ROUNDS);
     const userNickname = await Users.findOne({
@@ -75,7 +78,6 @@ userRouter.put("/me", needSignin, async (req, res)=>{
     res.send({
       nickname: nickname, 
       oneLiner: oneLiner,
-      password: hashPassword,
       success: true,
       message: "프로필을 수정하였습니다."})
     } catch (error) {
@@ -88,3 +90,4 @@ userRouter.put("/me", needSignin, async (req, res)=>{
 })
 
 module.exports = { userRouter };
+
